@@ -1,0 +1,14 @@
+<div class="input-group input-group-sm mb-3 parameter-input" >
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-sm">{{parameter.name}}</span>
+    </div>
+    <input type="text" #box (keyup)="onKey(box.value)" placeholder="{{  parameter.description }}" 
+    class="form-control" aria-label="Small" value="{{ publishedValue }}" aria-describedby="inputGroup-sizing-sm">
+
+    <span class="alert-danger" *ngIf="!isValid">
+        {{ parameter.type }} input expected | 
+    </span>
+    <span class="alert-warning" *ngIf="parameter.required && !box.value">
+        required
+    </span>
+</div>

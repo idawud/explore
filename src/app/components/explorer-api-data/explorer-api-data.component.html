@@ -1,0 +1,25 @@
+<div class="table-container my-3 bg-white p-2">
+    <div class="d-flex">
+        <div class="d-flex justify-content-start align-items-center">
+            <h4>{{ endpointDetails.api.displayName}} | </h4>
+            <p class="pt-2">{{ endpointDetails.endpoint.description }}</p>
+        </div>
+        <div class="mx-auto">
+            <app-endpoint-loader [statusMonitor]="statusMonitor">
+                <div class="alert alert-danger error pb-0 errorDisplay" role="alert">
+                    <p>Error fetching data</p> 
+                    <div class="text-right">
+                        <button (click)="loadEndpoint()" class="btn btn-sm btn-secondary mx-2">
+                            <small> <i class="fas fa-sync"></i> Reload</small> 
+                        </button>
+                    </div>
+                </div>
+            </app-endpoint-loader>
+        </div>
+    </div>
+    <div class="bg-light p-2 border">
+        <div *ngIf="isRowDataAvailable">
+            <ag-grid-angular #agGrid class="ag-theme-balham grid-table" [gridOptions]="gridOptions"></ag-grid-angular>
+        </div>
+    </div>
+</div>

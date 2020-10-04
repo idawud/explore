@@ -1,0 +1,22 @@
+<div class="border my-1">
+<div *ngIf="Ischecked; else notChecked">
+    <div class="description px-2 py-1 mb-1">
+      <input
+        type="checkbox"
+        (change)="addToList()"
+        disabled
+        checked
+      />
+      {{ endpoint.description }}
+    </div>
+  </div>
+<ng-template #notChecked>
+  <div class="description px-2 py-1 mb-1">
+      <input
+      type="checkbox"
+      (change)="addToList()"
+      />
+      {{ endpoint.description }}
+  </div>
+</ng-template>
+</div>

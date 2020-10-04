@@ -1,0 +1,15 @@
+<li class="item">
+    <a class="nav-link py-1 api" (click)="setEndPoints(apiStore.api.specificationLocation)"
+        href="#{{displayNameId}}" data-toggle="collapse" data-target="#{{displayNameId}}" aria-expanded="false">
+        <span class="d-none d-sm-inline">
+            <div class="d-flex">
+                <small class="mr-2 mt-1"><i class="fas fa-chevron-right"></i></small>
+                <div class="text-secondary">{{ apiStore.api.displayName }}</div>
+            </div>
+        </span>
+    </a>
+    <div class="collapse" id="{{displayNameId}}" aria-expanded="false">
+        <app-endpoint-list [apiStore]="apiStore">
+        </app-endpoint-list>
+    </div>
+</li>

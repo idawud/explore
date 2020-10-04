@@ -1,0 +1,25 @@
+$color-secondary: #046fb0;
+
+.remove-btn {
+	width: 30px;
+	height: 30px;
+}
+
+.duplicate-btn {
+	border: 1px solid $color-secondary;
+	outline: none;
+	background-color: transparent;
+	color: $color-secondary;
+	cursor: pointer;
+	margin-right: 2px;
+	transition: all .5s;
+	border-radius: 3px;
+	width: 30px;
+	height: 30px;
+
+	&:hover {
+		background-color: $color-secondary;
+		color: #fff;
+		border-radius: 3px;
+	}
+}

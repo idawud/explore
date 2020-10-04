@@ -1,0 +1,20 @@
+<div *ngIf="endpointDescription != null" class="d-flex justify-content-between">
+    <div class="w-75">
+        <div>
+            <div class="font-weight-bold h4">{{ explorerEndpointDetails.api.displayName }}</div>
+            <p>{{ endpointDescription.apiDescription }}</p>
+        </div>
+        <div class="font-weight-bold">{{ endpointDescription.summary }}</div>
+        <p>{{ endpointDescription.description }}</p>
+    </div>
+    <div class="w-25 text-right">
+        <button class="btn text-light btn-sm add-to-explorer px-4" *ngIf="isAvailableToAddToExplorer; else renderAddedToExplorerBtn" (click)=addEndpointToExplorer()>
+            + Add to explorer
+        </button>
+        <ng-template #renderAddedToExplorerBtn>
+            <button class="btn text-light btn-sm added-to-explorer px-5" disabled>
+                Added
+            </button>
+        </ng-template>
+    </div>
+</div>

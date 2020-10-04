@@ -1,0 +1,43 @@
+<div>
+  <div class="filter-section w-100 p-2 mb-2">
+    <small>Filter & Choose API</small>
+
+    <div class="search w-100">
+      <input
+        type="text"
+        class="search-field py-1 px-2 bg-light border"
+        placeholder="search..."
+        #apiSearchInput
+      />
+      <button class="search-btn p-1 bg-light border">
+        <small><i class="fa fa-search"></i></small>
+      </button>
+    </div>
+  </div>
+  <div class="scrollable px-2">
+    <div *ngIf="isFilterApisAvailable; else renderApis">
+      <div class="accordion" id="api">
+        <div *ngFor="let apiEndpoint of filteredApis; trackBy">
+          <app-modal-endpoint-list [apiEndpoint]="apiEndpoint" (endpointListToAddChangeValue)="endpointListToAddChangeValue($event)" (publishApisToExplorer)="publishApisToExplorer()"></app-modal-endpoint-list>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #renderApis>
+        No Api(s) Found
+    </ng-template>
+  </div>
+
+  <div class="modal-footer d-flex justify-content-between">
+    <button type="button" class="btn btn-light" data-dismiss="modal">
+      Cancel
+    </button>
+    <button
+      type="button"
+      class="btn btn-success px-2"
+      (click)="publishApisToExplorer()"
+    >
+      Add API
+    </button>
+  </div>
+</div>

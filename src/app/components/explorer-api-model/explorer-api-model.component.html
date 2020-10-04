@@ -1,0 +1,18 @@
+<div class="table-container my-1 bg-white p-2">
+    <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-start align-items-center">
+            <h4>{{ endpointDetails.api.displayName}} | </h4>
+            <p class="pt-2">{{ endpointDetails.endpoint.description }}</p>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+            <button *ngIf="input.hasParameter" class="duplicate-btn mr-1" (click)="duplicateEndpoint()" data-toggle="tooltip" data-placement="top" title="duplicate"><i class="fas fa-copy"></i></button>
+            <span *ngIf="input.hasParameter">|</span>
+            <button class="btn btn-outline-danger remove-btn d-flex justify-content-center align-items-center ml-1" (click)="removeEndpoint()" data-toggle="tooltip" data-placement="top" title="remove"><i class="fas fa-trash-alt"></i></button>
+        </div>
+    </div>
+    <div *ngIf="isRowDataAvailable">
+        <app-input-parameters *ngIf="input.hasParameter" [displayName]="endpointDetails.api.displayName"
+            [path]="endpointDetails.endpoint.path" [parameter]="input.parameter[0]"></app-input-parameters>
+        <ag-grid-angular #agGrid class="ag-theme-balham grid-table" [gridOptions]="gridOptions"></ag-grid-angular>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div [ngSwitch]="statusMonitor.status">
+    <ng-container *ngSwitchCase="'loading'">
+        <div [ngClass]="{'loader-active': isActive}">
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="alert alert-primary text-center" role="alert">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div> Loading APIs...</div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'loaded'">
+        <div [ngClass]="{'loader-active': !isActive}">
+            <!-- loaded -->
+        </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'error'">
+        <div [ngClass]="{'loader-active': isActive, 'loader-not-active': !isActive }">
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="bg-light">
+                    <div class="bg-danger px-4 py-2 text-light"> <i class="fas fa-exclamation-circle"></i> Error </div>
+                    <div class="py-4 px-5">
+                        <h5>Error Occurred<small class="font-weight-bold"> (could not load APIs)</small></h5>
+                        
+                        <small class="text-danger">An Error was encountered when retrieving APIs </small>
+                        <h6 class="mt-3 border-top pt-2">Contact Customer Support for Help</h6>
+                        
+                        <div class="text-right">
+                            <button (click)="reloadApi()" class="btn btn-sm btn-secondary mx-2">
+                                <small> <i class="fas fa-sync"></i> Reload</small> 
+                            </button>
+                            <button (click)="dismissModal()" class="btn btn-sm btn-outline-danger btn-light">
+                                <small class="px-3"> Close</small>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngSwitchDefault></ng-container>
+</div>

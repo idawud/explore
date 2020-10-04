@@ -1,0 +1,71 @@
+<div *ngIf="!isEndpointDetailsAvailable; else renderEndpoints"
+    class="d-flex justify-content-center align-items-center my-3 mx-aut">
+    <button type="button" class="add-api-btn" data-toggle="modal" data-target="#addApiWindow">
+        <span><i class="fas fa-plus"></i></span>
+        <span class="add-text">Add API to Explorer</span>
+    </button>
+</div>
+
+<ng-template #renderEndpoints>
+    <div class="changes-alert" *ngIf="isSaved"><ngb-alert *ngIf="unsavedChangesMessage" class="text-center" type="warning" (close)="closeWarningAlert()">{{ unsavedChangesMessage }}</ngb-alert></div>
+    <div class="changes-alert"><ngb-alert *ngIf="savedChangesMessage" class="text-center saved-changes-alert" type="success" (close)="closeAlert()">{{ savedChangesMessage }}</ngb-alert></div>
+    
+    <div class="mt-2">
+        <ul class="nav nav-pills mb-3 d-flex justify-content-end" id="pills-tab" role="tablist">
+            <li *ngIf="showCustomizeScreen; else renderChanges" class="nav-item fixed-bottom bg-light px-4 py-1">
+                <div class="d-flex justify-content-end">
+                    <a (click)="switchBackScreen()" class="nav-link mx-1 save-btn text-center bg-secondary" id="pills-edit-tab"
+                        data-toggle="pill" href="#dataOutput" role="tab" aria-controls="pills-home" aria-selected="true">
+                        <small>Back</small>
+                    </a>
+                    <button [disabled]="!hasChanges ? 'disabled': null" (click)="switchScreenSaveAndApply()"
+                        [ngClass]=" hasChanges ? 'nav-link save-btn text-center bg-success' : 'text-center inactive-save-btn'"
+                        id="pills-edit-tab" data-toggle="pill" href="#dataOutput" role="tab" aria-controls="pills-home"
+                        aria-selected="true">
+                        <small>Save & Apply Changes</small>
+                    </button>
+                </div>
+            </li>
+            <ng-template #renderChanges>
+                <li class="nav-item ml-auto">
+                    <a (click)="switchScreen()" class="nav-link text-center" id="pills-output-tab" data-toggle="pill"
+                        href="#editMode" role="tab" aria-controls="pills-home" aria-selected="true">
+                        <small><i class="fas fa-cog"></i> Customize</small>
+                    </a>
+                </li>
+            </ng-template>
+        </ul>
+    </div>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="editMode" role="tabpanel" aria-labelledby="pills-home-tab">
+            <app-new-explorer-edit [explorerEndpointDetails]="explorerEndpointDetails"></app-new-explorer-edit>
+        </div>
+        <div class="tab-pane fade" id="dataOutput" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <app-new-explorer-view [explorerEndpointDetails]="explorerEndpointDetailsView"> </app-new-explorer-view>
+        </div>
+    </div>
+
+    <div class="mx-auto mb-5" *ngIf="showCustomizeScreen">
+        <button type="button" class="add-api-btn" data-toggle="modal" data-target="#addApiWindow">
+            <span><i class="fas fa-plus"></i></span>
+            <span class="add-text">Add Another API</span>
+        </button>
+    </div>
+</ng-template>
+<!-- Modal -->
+<div class="modal fade" id="addApiWindow" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add API(s)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <app-new-api></app-new-api>
+            </div>
+        </div>
+    </div>
+</div>

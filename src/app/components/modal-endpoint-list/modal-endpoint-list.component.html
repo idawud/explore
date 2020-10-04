@@ -1,0 +1,39 @@
+<div class="apis">
+    <button
+      type="button"
+      class="apis-btn p-2 border-bottom border-light"
+      data-toggle="collapse"
+      [attr.data-target]="'#' + apiEndpoint.api.displayName"
+      aria-expanded="true"
+      [attr.aria-controls]="'#' + apiEndpoint.api.displayName"
+      (click)="setEndPoints(apiEndpoint.api)"
+    >
+      {{ apiEndpoint.api.displayName }}
+    </button>
+    <div
+      id="{{ apiEndpoint.api.displayName }}"
+      class="collapse"
+      [attr.aria-labelledby]="apiEndpoint.api.displayName"
+      data-parent="#api"
+    >
+      <div class="card-body">
+        <app-endpoint-loader [statusMonitor]="statusMonitor">
+          <div class="alert alert-danger error d-flex align-items-center" role="alert">
+              <div>Error Loading endpoints</div> 
+              <div class="text-right">
+                  <button (click)="setEndPoints(apiEndpoint.api)" class="btn btn-sm btn-secondary mx-2">
+                      <small> <i class="fas fa-sync"></i> Reload</small> 
+                  </button>
+              </div>
+          </div>  
+        </app-endpoint-loader>
+
+        <div *ngFor="let endpoint of apiEndpoint.endpoints; trackBy">
+          <app-endpoint-visibility [api]=apiEndpoint.api [endpoint]=endpoint (endpointListToAddChangeValue)='listToAddChangeValue($event)' >
+          </app-endpoint-visibility>
+        </div>
+        
+      </div>
+
+    </div>
+  </div>

@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+@font-face {
+	font-family: 'Karla';
+	src: url(../src/assets/Karla/Karla-Regular.ttf) format("truetype");
+	font-weight: 300;
+}
+
+$bg-color: #fff;
+$border-color: rgb(154, 208, 255);
+$angle: 90deg;
+$color-secondary: #046fb0;
+
+body,
+html {
+	background: $bg-color;
+	font-family: 'Karla', sans-serif;
+}
+
+.category[aria-expanded=true],
+.api[aria-expanded=true] {
+	& .fa-chevron-right {
+		transition: .3s transform ease-in-out;
+		transform: rotate($angle);
+	}
+}
+
+.ag-theme-balham {
+	font-family: "Karla", sans-serif;
+
+	.ag-row-selected {
+		background-color: $bg-color;
+	}
+
+	.ag-tooltip {
+		background-color: #fff;
+		color: #003333;
+		border-radius: 0px;
+		padding: 10px;
+		border-width: 1px;
+		border-style: solid;
+		border-color: $color-secondary;
+		width: 200px;
+	}
+
+	.ag-header-group-cell-label {
+		justify-content: center;
+	}
+}

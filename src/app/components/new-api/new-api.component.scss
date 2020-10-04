@@ -1,0 +1,28 @@
+button {
+	outline: none;
+}
+
+.description {
+	border: 1px solid #eee;
+}
+
+.scrollable {
+	width: 100%;
+	height: 40vh;
+	overflow: auto;
+}
+
+.filter-section {
+	background-color: #eee;
+
+	.search-field {
+		width: 90%;
+		border: none;
+		outline: none;
+	}
+
+	.search-btn {
+		width: 8%;
+		border: none;
+	}
+}

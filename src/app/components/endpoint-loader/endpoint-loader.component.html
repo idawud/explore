@@ -1,0 +1,16 @@
+<div *ngIf="statusMonitor">
+    <div [ngSwitch]="statusMonitor.status">
+        <ng-container *ngSwitchCase="'loading'">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'error'">
+            <ng-content select=".error"></ng-content>
+        </ng-container>
+        <ng-container *ngSwitchDefault></ng-container>
+    </div>
+    <ng-content></ng-content>
+</div>
+
+

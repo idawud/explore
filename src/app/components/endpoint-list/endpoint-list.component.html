@@ -1,0 +1,7 @@
+<ul *ngFor="let endpoint of apiStore.endpoints; trackBy" class="flex-column nav pl-4">
+    <li class="nav-item" id="{{endpoint}}">
+        <a class="nav-link p-1 pl-3 text-secondary" href="#{{endpoint.path}}" (click)="publishApiDetails(endpoint)">
+            {{ endpoint.description }}
+        </a>
+    </li>
+</ul>
